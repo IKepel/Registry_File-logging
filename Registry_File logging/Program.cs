@@ -11,7 +11,7 @@ if (key is null)
 }
 
 var directoryPath = @"c:\test";
-var fileName = @"test1.txt";
+var fileName = "test1.txt";
 var fullPath = Path.Combine(directoryPath, fileName);
 
 var existsDir = Directory.Exists(directoryPath);
