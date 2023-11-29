@@ -9,17 +9,19 @@ if (key is null)
     newKey.SetValue("First_Run", DateTime.Now.ToString());
     newKey.Close();
 }
+else 
+{
+    var directoryPath = @"c:\test";
+    var fileName = "test1.txt";
+    var fullPath = Path.Combine(directoryPath, fileName);
 
-var directoryPath = @"c:\test";
-var fileName = "test1.txt";
-var fullPath = Path.Combine(directoryPath, fileName);
+    var existsDir = Directory.Exists(directoryPath);
+    var existsFile = File.Exists(fullPath);
 
-var existsDir = Directory.Exists(directoryPath);
-var existsFile = File.Exists(fullPath);
+    if (!existsDir) Directory.CreateDirectory(directoryPath);
+    if (!existsFile) File.Create(fullPath).Close();
 
-if (!existsDir) Directory.CreateDirectory(directoryPath);
-if (!existsFile) File.Create(fullPath).Close();
-
-using StreamWriter sw = File.AppendText(fullPath);
-sw.WriteLine($"Start program: {DateTime.Now}");
-Console.WriteLine("The information about the current run was successfully added to the file.");
+    using StreamWriter sw = File.AppendText(fullPath);
+    sw.WriteLine($"Start program: {DateTime.Now}");
+    Console.WriteLine("The information about the current run was successfully added to the file.");
+}
