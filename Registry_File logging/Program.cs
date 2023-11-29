@@ -3,6 +3,7 @@
 var subKey = "Software_regedit";
 
 var key = Registry.CurrentUser.OpenSubKey(subKey);
+
 if (key is null)
 {
     var newKey = Registry.CurrentUser.CreateSubKey(subKey);
@@ -25,3 +26,5 @@ else
     sw.WriteLine($"Start program: {DateTime.Now}");
     Console.WriteLine("The information about the current run was successfully added to the file.");
 }
+
+key?.Close();
